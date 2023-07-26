@@ -1,5 +1,3 @@
-import fetch, { FormData, fileFromSync } from 'node-fetch';
-
 //webkitURL is deprecated but nevertheless
 URL = window.URL || window.webkitURL;
 
@@ -14,7 +12,6 @@ var audioContext //audio context to help us record
 var recordButton = document.getElementById("recordButton");
 var stopButton = document.getElementById("stopButton");
 var pauseButton = document.getElementById("pauseButton");
-var uploadButton = document.getElementbyId("uploadButton");
 
 //add events to those 2 buttons
 recordButton.addEventListener("click", startRecording);
