@@ -1,3 +1,5 @@
+import fetch, { FormData, fileFromSync } from 'node-fetch';
+
 //webkitURL is deprecated but nevertheless
 URL = window.URL || window.webkitURL;
 
@@ -12,11 +14,29 @@ var audioContext //audio context to help us record
 var recordButton = document.getElementById("recordButton");
 var stopButton = document.getElementById("stopButton");
 var pauseButton = document.getElementById("pauseButton");
+var uploadButton = document.getElementbyId("uploadButton");
 
 //add events to those 2 buttons
 recordButton.addEventListener("click", startRecording);
 stopButton.addEventListener("click", stopRecording);
 pauseButton.addEventListener("click", pauseRecording);
+uploadButton.addEventListener("submit", function(e) {
+	e.preventDefault();
+
+	const userFile = document.getElementbyId('file').files[0];
+	
+	const form = new FormData();
+	form.append('user-file', userFile, 'user-file.jpg');
+	
+	fetch('https://ingestion.edgeimpulse.com/api/training/anomaly', {
+	method: 'POST',
+	headers: {
+	  'x-api-key': 'ei_5cf10097b6661fc9e5067e0934358cd93bf5a4c7e839e08087aad2e571c2e4ef',
+	  'Content-Type': 'multipart/form-data'
+	},
+	body: form
+	});
+});
 
 function startRecording() {
 	console.log("recordButton clicked");
@@ -124,7 +144,7 @@ function createDownloadLink(blob) {
 
 	//name of .wav file to use during upload and download (without extendion)
 	var filename = new Date().toISOString();
-
+	
 	//add controls to the <audio> element
 	au.controls = true;
 	au.src = url;
