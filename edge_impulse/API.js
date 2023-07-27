@@ -1,4 +1,4 @@
-const fetch = require ("node-fetch")
+const fetch = require("node-fetch");
 
 uploadButton.addEventListener("submit", function(e) {
 	e.preventDefault();
