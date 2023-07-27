@@ -1,7 +1,7 @@
 uploadButton.addEventListener("submit", function(e) {
 	e.preventDefault();
 
-	const userFile = document.getElementbyId('file').files[0];
+	const userFile = document.getElementById('file').files[0];
 	
 	const form = new FormData();
 	form.append('user-file', userFile, 'user-file.jpg');
