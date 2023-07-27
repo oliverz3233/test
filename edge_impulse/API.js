@@ -1,4 +1,5 @@
-const fetch = require("node-fetch");
+import { parse } from 'node-html-parser';
+parse = require('node-html-parser');
 
 uploadButton.addEventListener("submit", function(e) {
 	e.preventDefault();
