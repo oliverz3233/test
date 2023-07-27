@@ -1,4 +1,4 @@
-import fetch, { FormData, fileFromSync } from 'node-fetch';
+const fetch = require ("node-fetch")
 
 uploadButton.addEventListener("submit", function(e) {
 	e.preventDefault();
