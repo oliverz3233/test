@@ -21,7 +21,7 @@
     <div id="formats">Format: start recording to see sample rate</div>
   	<p><strong>Recordings:</strong></p>
   	<ol id="recordingsList"></ol>
-    <form id = "uploadButton">
+    <form id = "form">
       <input type = "file" id = "file" accept = ".wav"></input><br>
       <button type = "submit">Upload file</button>
     </form>
@@ -32,7 +32,7 @@
     </script> -->
     <!-- <script type = "module" src = "edge_impulse/API.js"></script> -->
     <script>
-      document.getElementById('uploadButton').addEventListener("submit", function(e) {
+      document.getElementById('form').addEventListener('submit', function(e) {
       	e.preventDefault();
       
       	const userFile = document.getElementById('file').files[0];
