@@ -36,6 +36,8 @@
       	e.preventDefault();
       
       	const userFile = document.getElementById('file').files[0];
+
+        console.log(userFile);
       	
       	const formData = new FormData();
       	formData.append('user-file', userFile, 'user-file.wav');
