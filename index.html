@@ -25,12 +25,33 @@
       <input type = "file" id = "file" accept = ".wav"></input><br>
       <button type = "submit">Upload file</button>
     </form>
-    <script type="importmap">
+    <!-- <script type="importmap">
       { "imports": {
           "fetch":        "./node_modules/node-fetch/src/index.js"
       } }
-    </script> 
-    <script type = "module" src = "edge_impulse/API.js"></script>
+    </script> -->
+    <!-- <script type = "module" src = "edge_impulse/API.js"></script> -->
+    <script>
+      document.getElementById('uploadButton').addEventListener("submit", function(e) {
+      	e.preventDefault();
+      
+      	const userFile = document.getElementById('file').files[0];
+      	
+      	const formData = new FormData();
+      	formData.append('user-file', userFile, 'user-file.wav');
+      	
+      	fetch('https://ingestion.edgeimpulse.com/api/anomaly/files', {
+      	method: 'POST',
+      	headers: {
+      	  'x-api-key': 'ei_5cf10097b6661fc9e5067e0934358cd93bf5a4c7e839e08087aad2e571c2e4ef',
+      	  'Content-Type': 'multipart/form-data'
+      	},
+      	body: formData
+        })
+      });
+    </script>
+	});
+});
     <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
   	<script src="js/recorder.js"></script>
   	<script src="js/app.js"></script>
