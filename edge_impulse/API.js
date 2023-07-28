@@ -1,4 +1,5 @@
 uploadButton.addEventListener("submit", function(e) {
+	console.log("0")
 	e.preventDefault();
 
 	const userFile = document.getElementById('file').files[0];
