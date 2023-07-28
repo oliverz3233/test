@@ -4,7 +4,7 @@ uploadButton.addEventListener("submit", function(e) {
 	const userFile = document.getElementById('file').files[0];
 	
 	const form = new FormData();
-	form.append('user-file', userFile, 'user-file.jpg');
+	form.append('user-file', userFile, 'user-file.wav');
 	
 	fetch('https://ingestion.edgeimpulse.com/api/training/anomaly', {
 	method: 'POST',
