@@ -50,7 +50,9 @@
         	  'x-api-key': 'ei_5cf10097b6661fc9e5067e0934358cd93bf5a4c7e839e08087aad2e571c2e4ef'
         	},*/
         	body: formData
-        }).catch(console.error);
+        })
+        .then(data => console.log(data))
+        .catch(err => console.log(err));
       });
     </script>
     <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
