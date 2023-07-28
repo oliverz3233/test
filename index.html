@@ -37,16 +37,16 @@
       
       	const userFile = document.getElementById('file').files[0];
 
-        console.log("1");
+        console.log("0");
       	
       	const formData = new FormData();
       	formData.append('user-file', userFile);
       	
       	fetch('https://ingestion.edgeimpulse.com/api/training/files', {
         	method: 'POST',
-        	<!--headers: {
+        	/*headers: {
         	  'x-api-key': 'ei_5cf10097b6661fc9e5067e0934358cd93bf5a4c7e839e08087aad2e571c2e4ef'
-        	},-->
+        	},*/
         	body: formData
         }).catch(console.error);
       });
