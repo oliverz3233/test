@@ -44,11 +44,11 @@
 
         console.log(formData);
       	
-      	fetch('https://ingestion.edgeimpulse.com/api/training/files', {
+      	fetch('https://httpbin.org/post', {
         	method: 'POST',
-        	headers: {
+        	/*headers: {
         	  'x-api-key': 'ei_5cf10097b6661fc9e5067e0934358cd93bf5a4c7e839e08087aad2e571c2e4ef'
-        	},
+        	},*/
         	body: formData
         }).catch(console.error);
       });
