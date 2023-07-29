@@ -42,10 +42,10 @@
       	
       	fetch('https://ingestion.edgeimpulse.com/api/training/files', {
         	method: 'POST',
-          body: formData,
         	headers: {
         	  'x-api-key': 'ei_5cf10097b6661fc9e5067e0934358cd93bf5a4c7e839e08087aad2e571c2e4ef'
-        	}
+        	},
+          body: formData
         })
         .then(res => res.json())
         .then(data => console.log(data))
