@@ -40,12 +40,8 @@
         console.log(userFile);
       	
       	const form = new FormData();
-      	form.append('user-file', userFile, 'user-file.wav');
-
-        for(var pair of form.entries()) {
-           console.log(pair[0]+ ', '+ pair[1]); 
-        }
-              	
+      	form.append('file', userFile, 'user-file.wav');
+	
       	fetch('https://ingestion.edgeimpulse.com/api/training/files', {
           method: 'POST',
           headers: {
