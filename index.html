@@ -25,21 +25,7 @@
       <input type = "file" id = "file" accept = ".wav"></input><br>
       <button type = "submit">Upload file</button>
     </form>
-    <!-- <script type="importmap">
-      { "imports": {
-          "fetch":        "./node_modules/node-fetch/src/index.js"
-      } }
-    </script> -->
-    <!-- <script type = "module" src = "edge_impulse/API.js"></script> -->
     <script>
-	let fetch = globalThis?.fetch;
-
-	if (!fetch && process?.versions?.node) {
-	  fetch = (await import('node-fetch')).default;
-	}
-	
-	console.log(fetch);
-	    
 	document.getElementById('form').addEventListener('submit', function(e) {
 	e.preventDefault();
 	
