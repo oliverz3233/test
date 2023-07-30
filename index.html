@@ -32,28 +32,29 @@
     </script> -->
     <!-- <script type = "module" src = "edge_impulse/API.js"></script> -->
     <script>
-      document.getElementById('form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-      	const userFile = document.getElementById('file').files[0];
-
-        console.log(userFile);
-      	
-      	const form = new FormData();
-      	form.set('file', userFile, 'user-file.wav');
+	import fetch from 'node-fetch';
+	document.getElementById('form').addEventListener('submit', function(e) {
+	e.preventDefault();
 	
-      	fetch('https://ingestion.edgeimpulse.com/api/training/files', {
-          method: 'POST',
-          headers: {
-              'x-api-key': 'ei_5cf10097b6661fc9e5067e0934358cd93bf5a4c7e839e08087aad2e571c2e4ef',
-              'x-label': 'zero'
-          },
-          body: form
-        })
-        .then(res => res.json())
-        .then(data => console.log(data))
-        .catch(err => console.log(err));
-      });
+	const userFile = document.getElementById('file').files[0];
+	
+	console.log(userFile);
+	
+	const form = new FormData();
+	form.append('user-file', userFile, 'user-file.wav');
+	
+	fetch('https://ingestion.edgeimpulse.com/api/training/files', {
+	  method: 'POST',
+	  headers: {
+	      'x-api-key': 'ei_5cf10097b6661fc9e5067e0934358cd93bf5a4c7e839e08087aad2e571c2e4ef',
+	      'x-label': 'zero'
+	  },
+	  body: form
+	})
+	.then(res => res.json())
+	.then(data => console.log(data))
+	.catch(err => console.log(err));
+	});
     </script>
     <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
   	<script src="js/recorder.js"></script>
