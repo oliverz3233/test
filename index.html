@@ -28,9 +28,7 @@
     <script>
 	const form = document.getElementById('form');
 	const userfile = document.getElementById('userfile');
-	form.addEventListener('submit', function(e) {
-		e.preventDefault();
-		
+	form.addEventListener('submit', () => {
 		const userFile = userfile.files[0];
 		
 		console.log(userFile);
