@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Simple Recorder.js demo with record, stop and pause - addpipe.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" type="text/css" href="style.css">
     
   </head>
@@ -25,34 +24,38 @@
       <input type = "file" id = "file" accept = ".wav"></input><br>
       <button type = "submit">Upload file</button>
     </form>
+    <!-- <script type="importmap">
+      { "imports": {
+          "fetch":        "./node_modules/node-fetch/src/index.js"
+      } }
+    </script> -->
+    <!-- <script type = "module" src = "edge_impulse/API.js"></script> -->
     <script>
-	const form = document.getElementById('form');
-	form.addEventListener('submit', function(e) {
-		e.preventDefault();
-		
-		const userFile = document.getElementById('file').files[0];
-		
-		console.log(userFile);
-		
-		const formData = new FormData();
-		formData.append('user-file', userFile, 'user-file.wav');
-
-		for(var pair of formData.entries()) {
-	           console.log(pair[0]+ ', '+ pair[1]); 
-	        }
-		
-		fetch('https://ingestion.edgeimpulse.com/api/training/files', {
-		  method: 'POST',
-		  headers: {
-		      'x-api-key': 'ei_5cf10097b6661fc9e5067e0934358cd93bf5a4c7e839e08087aad2e571c2e4ef',
-		      'x-label': 'zero'
-		  },
-		  body: formData
-		})
-		.then(res => res.json())
-		.then(data => console.log(data))
-		.catch(err => console.log(err));
-	});
+      document.getElementById('form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+      	const userFile = document.getElementById('file').files[0];
+        console.log(userFile);
+      	
+      	const form = new FormData();
+      	form.append('user-file', userFile, 'user-file.wav');
+        for(var pair of form.entries()) {
+           console.log(pair[0]+ ', '+ pair[1]); 
+        }
+              	
+      	fetch('https://ingestion.edgeimpulse.com/api/training/files', {
+          method: 'POST',
+          headers: {
+              'x-api-key': 'ei_5cf10097b6661fc9e5067e0934358cd93bf5a4c7e839e08087aad2e571c2e4ef'
+              'x-api-key': 'ei_5cf10097b6661fc9e5067e0934358cd93bf5a4c7e839e08087aad2e571c2e4ef',
+              'Content-Type': 'multipart/form-data'
+          },
+          body: form
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch(err => console.log(err));
+      });
     </script>
     <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
   	<script src="js/recorder.js"></script>
