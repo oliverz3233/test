@@ -22,31 +22,33 @@
   	<p><strong>Recordings:</strong></p>
   	<ol id="recordingsList"></ol>
     <form id = "form">
-      <input type = "file" id = "file" accept = ".wav"></input><br>
+      <input type = "file" id = "input" accept = ".wav"></input><br>
       <button type = "submit">Upload file</button>
     </form>
     <script>
-	document.getElementById('form').addEventListener('submit', function(e) {
-	e.preventDefault();
-	
-	const userFile = document.getElementById('file').files[0];
-	
-	console.log(userFile);
-	
-	const form = new FormData();
-	form.append('user-file', userFile, 'user-file.wav');
-	
-	fetch('https://ingestion.edgeimpulse.com/api/training/files', {
-	  method: 'POST',
-	  headers: {
-	      'x-api-key': 'ei_5cf10097b6661fc9e5067e0934358cd93bf5a4c7e839e08087aad2e571c2e4ef',
-	      'x-label': 'zero'
-	  },
-	  body: form
-	})
-	.then(res => res.json())
-	.then(data => console.log(data))
-	.catch(err => console.log(err));
+	const form = document.getElementById('form');
+	const input = document.getElementById('input');
+	form.addEventListener('submit', function(e) {
+		e.preventDefault();
+		
+		const userFile = input.files[0];
+		
+		console.log(userFile);
+		
+		const form = new FormData();
+		form.append('user-file', userFile, 'user-file.wav');
+		
+		fetch('https://ingestion.edgeimpulse.com/api/training/files', {
+		  method: 'POST',
+		  headers: {
+		      'x-api-key': 'ei_5cf10097b6661fc9e5067e0934358cd93bf5a4c7e839e08087aad2e571c2e4ef',
+		      'x-label': 'zero'
+		  },
+		  body: form
+		})
+		.then(res => res.json())
+		.then(data => console.log(data))
+		.catch(err => console.log(err));
 	});
     </script>
     <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
