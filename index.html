@@ -22,15 +22,15 @@
   	<p><strong>Recordings:</strong></p>
   	<ol id="recordingsList"></ol>
     <form id = "form">
-      <input type = "file" id = "userfile" accept = ".wav"></input><br>
+      <input type = "file" id = "file" accept = ".wav"></input><br>
       <button type = "submit">Upload file</button>
     </form>
     <script>
 	const form = document.getElementById('form');
-	const userfile = document.getElementById('userfile');
 	form.addEventListener('submit', function(e) {
 		e.preventDefault();
-		const userFile = userfile.files[0];
+		
+		const userFile = document.getElementById('file').files[0];
 		
 		console.log(userFile);
 		
