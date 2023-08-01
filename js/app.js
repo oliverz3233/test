@@ -117,6 +117,8 @@ function stopRecording() {
 
 	//stop microphone access
 	gumStream.getAudioTracks()[0].stop();
+
+	clearInterval(interval);
 }
 
 function createDownloadLink(blob) {
