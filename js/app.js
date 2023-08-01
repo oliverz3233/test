@@ -75,6 +75,7 @@ function startRecording() {
 			rec.stop()
 			//create the wav blob and pass it on to createDownloadLink
 			rec.exportWAV(createDownloadLink);
+			console.log("Recording created");
 			rec.record()
 		}, 5000);
 
