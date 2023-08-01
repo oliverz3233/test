@@ -20,41 +20,43 @@
     <div id="formats">Format: start recording to see sample rate</div>
   	<p><strong>Recordings:</strong></p>
   	<ol id="recordingsList"></ol>
-    <form id = "form">
-      <input type = "file" id = "file" accept = ".wav"></input><br>
-      <button type = "submit">Upload file</button>
-    </form>
-    <!-- <script type="importmap">
-      { "imports": {
-          "fetch":        "./node_modules/node-fetch/src/index.js"
-      } }
-    </script> -->
-    <!-- <script type = "module" src = "edge_impulse/API.js"></script> -->
-    <script>
-      document.getElementById('form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-      	const userFile = document.getElementById('file').files[0];
-        console.log(userFile);
-      	
-      	const form = new FormData();
-      	form.append('user-file', userFile, 'user-file.wav');
-        for(var pair of form.entries()) {
-           console.log(pair[0]+ ', '+ pair[1]); 
-        }
-              	
-      	fetch('https://ingestion.edgeimpulse.com/api/training/files', {
-          method: 'POST',
-          headers: {
-              'x-api-key': 'ei_5cf10097b6661fc9e5067e0934358cd93bf5a4c7e839e08087aad2e571c2e4ef'
-          },
-          body: form
-        })
-        .then(res => res.json())
-        .then(data => console.log(data))
-        .catch(err => console.log(err));
-      });
-    </script>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <py-script> 
+      from scipy.io import wavfile
+      import pandas as pd
+      import numpy as np
+      wget https://github.com/edgeimpulse/processing-blocks/archive/{"76a5d144086154d7132fc4060cbcce292e768c0b"}.zip
+      unzip -q {blocks_name}.zip
+      mv "processing-blocks-{blocks_name}/mfe" "mfe"
+      import numpy as np
+      from mfe.dsp import generate_features
+      
+      input_filename = 'dog8.wav'
+      samrate, data = wavfile.read(input_filename)
+      listData = []
+      if(len(data.shape) == 1):
+        for i in range(0, data.shape[0]):
+          listData.append(data[i])
+      else:
+        for i in range(0, data.shape[0]):
+          listData.append(data[i][0])
+      raw_features = np.array(listData)
+      result = generate_features(implementation_version=3,
+                               draw_graphs=False,
+                               raw_data=raw_features,
+                               axes=[""],
+                               sampling_freq=44100,
+                               frame_length=0.02,
+                               frame_stride=0.01,
+                               num_filters=40,
+                               fft_length=256,
+                               low_frequency=0,
+                               high_frequency=0,
+                               win_size=1000,
+                               noise_floor_db=-52)
+      print(result)
+    </py-script>
     <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
   	<script src="js/recorder.js"></script>
   	<script src="js/app.js"></script>
