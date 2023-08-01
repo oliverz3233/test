@@ -71,6 +71,11 @@ function startRecording() {
 
 		console.log("Recording started");
 
+		const interval = setInterval(function() {
+			//create the wav blob and pass it on to createDownloadLink
+			rec.exportWAV(createDownloadLink);
+		}, 500);
+
 	}).catch(function(err) {
 	  	//enable the record button if getUserMedia() fails
     	recordButton.disabled = false;
@@ -109,9 +114,6 @@ function stopRecording() {
 
 	//stop microphone access
 	gumStream.getAudioTracks()[0].stop();
-
-	//create the wav blob and pass it on to createDownloadLink
-	rec.exportWAV(createDownloadLink);
 }
 
 function createDownloadLink(blob) {
