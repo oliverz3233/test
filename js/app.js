@@ -72,9 +72,11 @@ function startRecording() {
 		console.log("Recording started");
 
 		const interval = setInterval(function() {
+			rec.stop()
 			//create the wav blob and pass it on to createDownloadLink
 			rec.exportWAV(createDownloadLink);
-		}, 500);
+			rec.record()
+		}, 5000);
 
 	}).catch(function(err) {
 	  	//enable the record button if getUserMedia() fails
