@@ -71,7 +71,7 @@ function startRecording() {
 
 		console.log("Recording started");
 
-		const interval = setInterval(function() {
+		window.interval = setInterval(function() {
 			rec.stop()
 			//create the wav blob and pass it on to createDownloadLink
 			rec.exportWAV(createDownloadLink);
@@ -118,7 +118,7 @@ function stopRecording() {
 	//stop microphone access
 	gumStream.getAudioTracks()[0].stop();
 
-	clearInterval(interval);
+	clearInterval(window.interval);
 }
 
 function createDownloadLink(blob) {
