@@ -121,6 +121,7 @@ function stopRecording() {
 	gumStream.getAudioTracks()[0].stop();
 
 	clearInterval(interval);
+	rec.stop();
 }
 
 function createDownloadLink(blob) {
