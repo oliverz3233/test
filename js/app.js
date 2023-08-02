@@ -18,6 +18,8 @@ recordButton.addEventListener("click", startRecording);
 stopButton.addEventListener("click", stopRecording);
 pauseButton.addEventListener("click", pauseRecording);
 
+var interval;
+
 function startRecording() {
 	console.log("recordButton clicked");
 
@@ -71,7 +73,7 @@ function startRecording() {
 
 		console.log("Recording started");
 
-		window.interval = setInterval(function() {
+		interval = setInterval(function() {
 			rec.stop()
 			//create the wav blob and pass it on to createDownloadLink
 			rec.exportWAV(createDownloadLink);
@@ -118,7 +120,7 @@ function stopRecording() {
 	//stop microphone access
 	gumStream.getAudioTracks()[0].stop();
 
-	clearInterval(window.interval);
+	clearInterval(interval);
 }
 
 function createDownloadLink(blob) {
