@@ -1,9 +1,11 @@
-@app.route('/messages', methods=['POST'])
+@app.route('/', methods=['POST'])
 def dsp():
-  file = request.files['userfile']
-  f = open('userfile.wav', 'wb')
-  f.write(request.data)
-  f.close()
+  print("Recieved Audio File")
+  file = request.files['audio_data']
+  print('File from the POST request is: {}'.format(file))
+  with open("audio.wav", "wb") as aud:
+    aud_stream = file.read()
+    aud.write(video_stream)
   from scipy.io import wavfile
   import pandas as pd
   import numpy as np
@@ -13,7 +15,7 @@ def dsp():
   import numpy as np
   from mfe.dsp import generate_features
   
-  input_filename = 'userfile.wav'
+  input_filename = 'audio.wav'
   samrate, data = wavfile.read(input_filename)
   listData = []
   if(len(data.shape) == 1):
