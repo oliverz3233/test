@@ -1,6 +1,6 @@
 @app.route('/messages', methods=['POST'])
 def dsp():
-  file = request.files['file']
+  file = request.files['userfile']
   f = open('userfile.wav', 'wb')
   f.write(request.data)
   f.close()
@@ -37,3 +37,4 @@ def dsp():
                            win_size=1000,
                            noise_floor_db=-52)
   print(result)
+  return result
