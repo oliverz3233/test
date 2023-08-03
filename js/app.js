@@ -129,15 +129,16 @@ function stopRecording() {
 }
 
 function passToPy(blob) {
-	var formData = new FormData();
-	formData.append('userfile', blob, 'userfile.wav');
-	$.ajax({
-	    type: 'POST',
-	    url: 'py/dsp.py',
-	    data: formData,
-	    processData: false,  // prevent jQuery from converting the data
-	    contentType: false,  // prevent jQuery from overriding content type
-	}).done(function(data) {
-		console.log(data);
-	});
+	var filename = new Date().toISOString();
+
+    	var xhr=new XMLHttpRequest();
+	xhr.onload=function(e) {
+		if(this.readyState === 4) {
+		  console.log("Server returned: ",e.target.responseText);
+		}
+	};
+	var fd=new FormData();
+	fd.append("audio_data",blob, filename);
+	xhr.open("POST","/",true);
+	xhr.send(fd);
 }
