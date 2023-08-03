@@ -137,8 +137,7 @@ function passToPy(blob) {
 	    data: formData,
 	    processData: false,  // prevent jQuery from converting the data
 	    contentType: false,  // prevent jQuery from overriding content type
-	    success: function(response) {
-		alert(response);
-	    }
+	}).done(function(data) {
+		console.log(data);
 	});
 }
