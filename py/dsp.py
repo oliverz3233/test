@@ -1,4 +1,10 @@
-from scipy.io import wavfile
+@app.route('/messages', methods=['POST'])
+def dsp():
+  file = request.files['file']
+  f = open('userfile.wav', 'wb')
+  f.write(request.data)
+  f.close()
+  from scipy.io import wavfile
   import pandas as pd
   import numpy as np
   wget https://github.com/edgeimpulse/processing-blocks/archive/{"76a5d144086154d7132fc4060cbcce292e768c0b"}.zip
@@ -7,7 +13,7 @@ from scipy.io import wavfile
   import numpy as np
   from mfe.dsp import generate_features
   
-  input_filename = 'dog8.wav'
+  input_filename = 'userfile.wav'
   samrate, data = wavfile.read(input_filename)
   listData = []
   if(len(data.shape) == 1):
